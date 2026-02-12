@@ -28,14 +28,14 @@ on:
         type: choice
         description: Select Source.
         required: true
-        default: openwrt
+        default: immortalwrt
         options:
         - openwrt
         - immortalwrt
 
 env:
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config_small
+  CONFIG_FILE: .config_arm
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -46,6 +46,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout
@@ -72,7 +74,7 @@ jobs:
         if [ ${{ inputs.source }} == 'openwrt' ]; then
           REPO_URL='https://github.com/lkiuyu/openwrt-ufi'
         elif [ ${{ inputs.source }} == 'immortalwrt' ]; then
-          REPO_URL='https://github.com/lkiuyu/immortalwrt'
+          REPO_URL='https://github.com/haris131/immortalwrt'
         fi
         git clone --depth=1 $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
