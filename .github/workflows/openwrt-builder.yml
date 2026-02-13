@@ -85,11 +85,10 @@ jobs:
           REPO_URL='https://github.com/lkiuyu/openwrt-ufi'
         elif [ ${{ inputs.source }} == 'immortalwrt' ]; then
           if [ ${{ inputs.config }} == '.config_arm' ]; then
-            REPO='haris131'
+            REPO_URL='https://github.com/haris131/immortalwrt'
           else
-            REPO='lkiuyu'
+            REPO_URL='https://github.com/lkiuyu/immortalwrt'
           fi
-          REPO_URL='https://github.com/${REPO}/immortalwrt'
         fi
         git clone --depth=1 $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
